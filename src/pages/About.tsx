@@ -20,11 +20,11 @@ const About: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1>About LockedIn</h1>
+        <h1>About Onboad</h1>
         
         <div className="intro-text">
           <p>
-            <strong>LockedIn</strong> is a new-employee onboarding and task assignment tool that helps teams 
+            <strong>Onboad</strong> is a new-employee onboarding and task assignment tool that helps teams 
             welcome people faster, keep every task on track, and give HR a clear view of who is ready.
           </p>
         </div>
@@ -84,7 +84,7 @@ const About: React.FC = () => {
         <div className="section-block">
           <h2>Our design</h2>
           <p>
-            LockedIn uses a modern glass-style interface with smooth animations and a clean blue palette, 
+            Onboad uses a modern glass-style interface with smooth animations and a clean blue palette, 
             so everyday HR work feels calm and polished.
           </p>
         </div>
@@ -92,13 +92,13 @@ const About: React.FC = () => {
         <div className="section-block">
           <h2>Privacy and improvement</h2>
           <p>
-            We treat the personal and employment information in LockedIn with care, and we keep improving 
+            We treat the personal and employment information in Onboad with care, and we keep improving 
             the product with the feedback of the teams who use it.
           </p>
         </div>
 
         <div className="cta-block">
-          <h3>Ready to try LockedIn?</h3>
+          <h3>Ready to try Onboad?</h3>
           <Link to="/dashboard" className="btn-cta">
             Get started
           </Link>

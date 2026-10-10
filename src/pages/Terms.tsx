@@ -28,14 +28,14 @@ const Terms: React.FC = () => {
         
         <div className="intro-text">
           <p>
-            These Terms of Use govern your access to and use of LockedIn. By using it, you agree to them.
+            These Terms of Use govern your access to and use of Onboad. By using it, you agree to them.
           </p>
         </div>
 
         <div className="legal-section">
           <h2>1. Who can use it</h2>
           <p>
-            LockedIn is for organizations and their employees. You must be 18 or older. If you sign up for an organization, 
+            Onboad is for organizations and their employees. You must be 18 or older. If you sign up for an organization, 
             you confirm you have authority to bind it.
           </p>
         </div>
@@ -98,7 +98,7 @@ const Terms: React.FC = () => {
         <div className="legal-section">
           <h2>8. Our property</h2>
           <p>
-            LockedIn, its software, design, name and logo belong to MecurixTech.
+            Onboad, its software, design, name and logo belong to MecurixTech.
           </p>
         </div>
 

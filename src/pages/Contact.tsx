@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
       icon: MessageSquare,
       title: 'General support',
       items: [
-        { label: 'Email', value: 'support@lockedin.ng' },
+        { label: 'Email', value: 'support@onboad.ng' },
         { label: 'Phone/WhatsApp', value: '+234 XXX XXX XXXX' },
       ],
     },
@@ -18,21 +18,21 @@ const Contact: React.FC = () => {
       icon: Mail,
       title: 'Sales and demos',
       items: [
-        { label: 'Email', value: 'sales@lockedin.ng' },
+        { label: 'Email', value: 'sales@onboad.ng' },
       ],
     },
     {
       icon: CreditCard,
       title: 'Billing',
       items: [
-        { label: 'Email', value: 'billing@lockedin.ng' },
+        { label: 'Email', value: 'billing@onboad.ng' },
       ],
     },
     {
       icon: Shield,
       title: 'Privacy and data requests',
       items: [
-        { label: 'Email', value: 'privacy@lockedin.ng' },
+        { label: 'Email', value: 'privacy@onboad.ng' },
         { label: 'Subject', value: 'Please use "Data Request" as the subject' },
       ],
     },
@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
       icon: FileText,
       title: 'Legal notices',
       items: [
-        { label: 'Email', value: 'legal@lockedin.ng' },
+        { label: 'Email', value: 'legal@onboad.ng' },
       ],
     },
   ];
@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
         
         <div className="intro-text">
           <p>
-            Have a question, need help or want a demo of LockedIn? Reach us through any channel below.
+            Have a question, need help or want a demo of Onboad? Reach us through any channel below.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ const Contact: React.FC = () => {
         <div className="cta-block">
           <h3>Ready to get started?</h3>
           <Link to="/dashboard" className="btn-cta">
-            Try LockedIn now
+            Try Onboad now
           </Link>
         </div>
       </motion.div>

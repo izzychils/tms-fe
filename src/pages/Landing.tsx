@@ -86,8 +86,8 @@ const Landing: React.FC = () => {
       <nav className="landing-nav">
         <div className="nav-container">
           <Link to="/" className="nav-logo">
-            <img src="/logo.jpg" alt="LockedIn Logo" className="logo-image" />
-            <span className="logo-text">LockedIn</span>
+            <img src="/logo.jpg" alt="Onboad Logo" className="logo-image" />
+            <span className="logo-text">Onboad</span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -179,7 +179,7 @@ const Landing: React.FC = () => {
             </h1>
             
             <p className="hero-subtitle">
-              LockedIn helps teams onboard new employees with clear task lists, real-time progress tracking, 
+              Onboad helps teams onboard new employees with clear task lists, real-time progress tracking, 
               and organized workflows. Keep everyone on track and give HR a complete view of who's ready.
             </p>
             
@@ -353,8 +353,8 @@ const Landing: React.FC = () => {
         <div className="footer-container">
           <div className="footer-brand">
             <div className="footer-logo">
-              <img src="/logo.jpg" alt="LockedIn Logo" className="logo-image" />
-              <span className="logo-text">LockedIn</span>
+              <img src="/logo.jpg" alt="Onboad Logo" className="logo-image" />
+              <span className="logo-text">Onboad</span>
             </div>
             <p>Make the first days clear, friendly, and well-organized</p>
           </div>
@@ -378,7 +378,7 @@ const Landing: React.FC = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 LockedIn by MecurixTech. All rights reserved.</p>
+          <p>© 2026 Onboad by MecurixTech. All rights reserved.</p>
         </div>
       </footer>
     </div>

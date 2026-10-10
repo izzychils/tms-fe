@@ -49,14 +49,14 @@ const SignIn: React.FC = () => {
         <aside className="auth-brand-panel">
           <div className="auth-brand-content">
             <Link to="/" className="auth-brand-logo">
-              <img src="/logo.jpg" alt="LockedIn Logo" className="auth-logo-image" />
-              <span className="auth-logo-text">LockedIn</span>
+              <img src="/logo.jpg" alt="Onboad Logo" className="auth-logo-image" />
+              <span className="auth-logo-text">Onboad</span>
             </Link>
 
             <div className="auth-brand-info">
               <h2>Welcome to employee onboarding made simple</h2>
               <p>
-                LockedIn helps teams onboard new employees with clear task lists, real-time 
+                Onboad helps teams onboard new employees with clear task lists, real-time 
                 progress tracking, and organized workflows.
               </p>
               

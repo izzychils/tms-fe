@@ -28,7 +28,7 @@ const Privacy: React.FC = () => {
         
         <div className="intro-text">
           <p>
-            <strong>LockedIn</strong> ("we", "us", "our") processes employee and employer information to run onboarding. 
+            <strong>Onboad</strong> ("we", "us", "our") processes employee and employer information to run onboarding. 
             This policy explains what we collect, why, who sees it and your rights under the Nigeria Data Protection Regulation (NDPR).
           </p>
         </div>
@@ -37,7 +37,7 @@ const Privacy: React.FC = () => {
           <h2>1. Who is responsible</h2>
           <p>
             The employer (your organization) decides what onboarding data is collected and is the data controller. 
-            LockedIn provides the platform and acts as a data processor for that content. For account and usage data 
+            Onboad provides the platform and acts as a data processor for that content. For account and usage data 
             about the platform itself, we are the controller.
           </p>
         </div>
@@ -91,7 +91,7 @@ const Privacy: React.FC = () => {
         <div className="legal-section">
           <h2>7. Retention</h2>
           <p>
-            Data is kept while your organization uses LockedIn and as long as the law requires. When an organization ends 
+            Data is kept while your organization uses Onboad and as long as the law requires. When an organization ends 
             its account, or on a valid instruction from the employer, we delete or anonymize the data within a reasonable time.
           </p>
         </div>
@@ -108,7 +108,7 @@ const Privacy: React.FC = () => {
         <div className="legal-section">
           <h2>9. Children</h2>
           <p>
-            LockedIn is for working adults. We do not knowingly collect data from anyone under 18.
+            Onboad is for working adults. We do not knowingly collect data from anyone under 18.
           </p>
         </div>
 
