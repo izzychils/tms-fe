@@ -9,95 +9,98 @@ import {
   Zap,
   Shield,
   Clock,
-  Star,
+  BarChart3,
+  FileText,
+  Bell,
   ChevronRight,
-  Sparkles,
+  Menu,
+  X,
 } from 'lucide-react';
 import './Landing.css';
 
 const Landing: React.FC = () => {
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const features = [
     {
       icon: Users,
-      title: 'Seamless Onboarding',
-      description: 'Guide new hires through every step with personalized task lists and progress tracking',
+      title: 'Team Collaboration',
+      description: 'Bring your whole team together with shared task lists and real-time progress updates',
     },
     {
-      icon: TrendingUp,
-      title: 'Real-Time Analytics',
-      description: 'Track team progress, identify bottlenecks, and optimize your onboarding process',
+      icon: BarChart3,
+      title: 'Powerful Analytics',
+      description: 'Track completion rates, identify bottlenecks, and optimize your onboarding workflow',
     },
     {
-      icon: Zap,
-      title: 'Automated Workflows',
-      description: 'Send automated reminders and notifications to keep everyone on track',
+      icon: Bell,
+      title: 'Smart Notifications',
+      description: 'Automated reminders keep everyone on track without manual follow-ups',
     },
     {
       icon: Shield,
-      title: 'Secure & Compliant',
-      description: 'Keep all employee data safe and ensure compliance with company policies',
+      title: 'Enterprise Security',
+      description: 'Bank-level encryption and compliance features to keep employee data safe',
     },
   ];
 
   const stats = [
-    { value: '10K+', label: 'Employees Onboarded' },
+    { value: '10,000+', label: 'Employees Onboarded' },
     { value: '95%', label: 'Completion Rate' },
     { value: '60%', label: 'Time Saved' },
-    { value: '4.9', label: 'User Rating', icon: Star },
+    { value: '500+', label: 'Companies' },
   ];
 
-  const testimonials = [
+  const steps = [
     {
-      name: 'Sarah Martinez',
-      role: 'HR Director',
-      company: 'TechCorp',
-      avatar: '👩‍💼',
-      quote: 'Onboard Flow transformed our hiring process. New employees are productive 40% faster.',
+      icon: FileText,
+      title: 'Create your workflow',
+      description: 'Set up onboarding tasks organized by category with custom due dates',
     },
     {
-      name: 'James Chen',
-      role: 'VP of Operations',
-      company: 'StartupXYZ',
-      avatar: '👨‍💻',
-      quote: 'The analytics dashboard gave us insights we never had before. A game changer!',
+      icon: Users,
+      title: 'Invite your team',
+      description: 'Add new hires and assign personalized task lists in minutes',
     },
     {
-      name: 'Maria Garcia',
-      role: 'People Operations Lead',
-      company: 'GlobalCo',
-      avatar: '👩‍⚕️',
-      quote: 'Best onboarding platform we have used. Our team loves it and new hires feel welcomed.',
+      icon: TrendingUp,
+      title: 'Track progress',
+      description: 'Monitor completion in real-time with beautiful dashboards',
     },
   ];
 
   return (
     <div className="landing-page">
-      {/* Animated Background */}
+      {/* Subtle Background */}
       <div className="liquid-background">
-        <div className="liquid-blob"></div>
         <div className="liquid-blob"></div>
         <div className="liquid-blob"></div>
         <div className="liquid-blob"></div>
       </div>
 
       {/* Navigation */}
-      <nav className="landing-nav glass-card-strong">
+      <nav className="landing-nav">
         <div className="nav-container">
-          <div className="nav-logo">
-            <Sparkles className="logo-icon" />
-            <span className="gradient-text">Onboard Flow</span>
-          </div>
-          <div className="nav-links">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How it Works</a>
-            <a href="#testimonials">Testimonials</a>
-          </div>
-          <Link to="/dashboard" className="btn-primary-landing">
-            Get Started
-            <ArrowRight size={18} />
+          <Link to="/" className="nav-logo">
+            <div className="logo-icon-wrapper">
+              <Zap className="logo-icon" />
+            </div>
+            <span className="logo-text">OnboardFlow</span>
           </Link>
+          
+          <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
+            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How it works</a>
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Customers</a>
+            <Link to="/dashboard" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>
+              Get started
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </nav>
 
@@ -108,87 +111,91 @@ const Landing: React.FC = () => {
             className="hero-content"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="hero-badge glass-card">
-              <Sparkles size={16} />
+            <div className="hero-badge">
+              <CheckCircle2 size={14} />
               <span>Trusted by 500+ companies worldwide</span>
             </div>
             
             <h1 className="hero-title">
-              Welcome new hires with a{' '}
-              <span className="gradient-text-pink">seamless</span> onboarding experience
+              Where teams onboard new hires <span className="text-highlight">seamlessly</span>
             </h1>
             
             <p className="hero-subtitle">
-              Transform your employee onboarding with automated workflows, real-time progress tracking,
-              and beautiful dashboards that make new hires feel right at home.
+              The collaborative onboarding platform to bring new employees up to speed, 
+              track their progress, and ensure nothing falls through the cracks.
             </p>
             
             <div className="hero-actions">
               <Link to="/dashboard" className="btn-hero-primary">
-                Start Free Trial
+                Start free trial
                 <ArrowRight size={20} />
               </Link>
-              <button className="btn-hero-secondary">
-                Watch Demo
+              <a href="#how-it-works" className="btn-hero-secondary">
+                See how it works
                 <ChevronRight size={20} />
-              </button>
+              </a>
             </div>
 
             {/* Stats Bar */}
-            <div className="stats-bar glass-card">
+            <div className="stats-bar">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   className="stat-item"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + index * 0.1 }}
                 >
-                  <div className="stat-value">
-                    {stat.value}
-                    {stat.icon && <stat.icon size={20} className="stat-icon" />}
-                  </div>
+                  <div className="stat-value">{stat.value}</div>
                   <div className="stat-label">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
-          {/* Hero Image - Dashboard Preview */}
+          {/* Hero Visual - Dashboard Preview */}
           <motion.div
             className="hero-visual"
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="dashboard-preview glass-card-strong">
+            <div className="dashboard-preview">
               <div className="preview-header">
                 <div className="preview-dots">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
+                  <span className="dot"></span>
                 </div>
-                <span className="preview-title">Onboard Flow Dashboard</span>
               </div>
               <div className="preview-content">
                 <div className="preview-card">
-                  <div className="card-header">
-                    <Users size={24} color="var(--accent-cyan)" />
-                    <span>8 Active Employees</span>
+                  <div className="card-icon">
+                    <Users size={20} />
                   </div>
-                  <div className="progress-preview">
-                    <div className="progress-bar" style={{ width: '75%' }}></div>
+                  <div className="card-info">
+                    <div className="card-title">Team Overview</div>
+                    <div className="card-value">12 active employees</div>
+                  </div>
+                  <div className="card-chart">
+                    <div className="mini-bar" style={{ height: '40%' }}></div>
+                    <div className="mini-bar" style={{ height: '75%' }}></div>
+                    <div className="mini-bar" style={{ height: '60%' }}></div>
+                    <div className="mini-bar" style={{ height: '90%' }}></div>
                   </div>
                 </div>
                 <div className="preview-card">
-                  <div className="card-header">
-                    <TrendingUp size={24} color="var(--accent-pink)" />
-                    <span>92% Avg Progress</span>
+                  <div className="card-icon green">
+                    <TrendingUp size={20} />
                   </div>
-                  <div className="progress-preview">
-                    <div className="progress-bar" style={{ width: '92%' }}></div>
+                  <div className="card-info">
+                    <div className="card-title">Progress Rate</div>
+                    <div className="card-value">87% complete</div>
+                  </div>
+                  <div className="progress-indicator">
+                    <div className="progress-fill" style={{ width: '87%' }}></div>
                   </div>
                 </div>
               </div>
@@ -206,27 +213,22 @@ const Landing: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2>
-              Everything you need to{' '}
-              <span className="gradient-text">streamline onboarding</span>
-            </h2>
-            <p>Powerful features designed to make employee onboarding effortless</p>
+            <h2>Everything you need for seamless onboarding</h2>
+            <p>Powerful features designed to make employee onboarding effortless and efficient</p>
           </motion.div>
 
           <div className="features-grid">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
-                className={`feature-card glass-card ${activeFeature === index ? 'active' : ''}`}
+                className="feature-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                onMouseEnter={() => setActiveFeature(index)}
-                whileHover={{ scale: 1.05 }}
               >
                 <div className="feature-icon">
-                  <feature.icon size={32} />
+                  <feature.icon size={28} />
                 </div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
@@ -245,44 +247,23 @@ const Landing: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2>
-              How it <span className="gradient-text">works</span>
-            </h2>
+            <h2>How it works</h2>
             <p>Get started in minutes with our simple three-step process</p>
           </motion.div>
 
           <div className="steps-container">
-            {[
-              {
-                step: '01',
-                title: 'Create Tasks',
-                description: 'Set up onboarding tasks across categories like Documents, Training, and Equipment',
-                icon: CheckCircle2,
-              },
-              {
-                step: '02',
-                title: 'Invite Employees',
-                description: 'Add new hires and assign personalized task lists with due dates',
-                icon: Users,
-              },
-              {
-                step: '03',
-                title: 'Track Progress',
-                description: 'Monitor completion rates in real-time and send automated reminders',
-                icon: Clock,
-              },
-            ].map((step, index) => (
+            {steps.map((step, index) => (
               <motion.div
-                key={step.step}
-                className="step-card glass-card"
+                key={step.title}
+                className="step-card"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
               >
-                <div className="step-number">{step.step}</div>
+                <div className="step-number">{String(index + 1).padStart(2, '0')}</div>
                 <div className="step-icon">
-                  <step.icon size={40} />
+                  <step.icon size={32} />
                 </div>
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
@@ -292,52 +273,9 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section id="testimonials" className="testimonials-section">
-        <div className="section-container">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2>
-              Loved by <span className="gradient-text-pink">teams</span> everywhere
-            </h2>
-            <p>See what HR leaders are saying about Onboard Flow</p>
-          </motion.div>
-
-          <div className="testimonials-grid">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                className="testimonial-card glass-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                whileHover={{ y: -10 }}
-              >
-                <div className="quote-icon">"</div>
-                <p className="quote-text">{testimonial.quote}</p>
-                <div className="testimonial-author">
-                  <div className="author-avatar">{testimonial.avatar}</div>
-                  <div className="author-info">
-                    <div className="author-name">{testimonial.name}</div>
-                    <div className="author-role">
-                      {testimonial.role} at {testimonial.company}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="cta-section">
-        <div className="cta-container glass-card-strong">
+        <div className="cta-container">
           <motion.div
             className="cta-content"
             initial={{ opacity: 0, y: 20 }}
@@ -345,9 +283,9 @@ const Landing: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2>Ready to transform your onboarding?</h2>
-            <p>Join hundreds of companies creating better first-day experiences</p>
+            <p>Join hundreds of companies creating better first-day experiences for their employees</p>
             <Link to="/dashboard" className="btn-cta">
-              Get Started Now
+              Start your free trial
               <ArrowRight size={20} />
             </Link>
           </motion.div>
@@ -359,8 +297,10 @@ const Landing: React.FC = () => {
         <div className="footer-container">
           <div className="footer-brand">
             <div className="footer-logo">
-              <Sparkles size={24} />
-              <span className="gradient-text">Onboard Flow</span>
+              <div className="logo-icon-wrapper">
+                <Zap className="logo-icon" />
+              </div>
+              <span className="logo-text">OnboardFlow</span>
             </div>
             <p>Make every first day extraordinary</p>
           </div>
@@ -368,25 +308,25 @@ const Landing: React.FC = () => {
             <div className="footer-column">
               <h4>Product</h4>
               <a href="#features">Features</a>
-              <a href="#how-it-works">How it Works</a>
-              <a href="#testimonials">Testimonials</a>
+              <a href="#how-it-works">How it works</a>
+              <Link to="/dashboard">Dashboard</Link>
             </div>
             <div className="footer-column">
               <h4>Company</h4>
-              <a href="#">About Us</a>
-              <a href="#">Careers</a>
-              <a href="#">Contact</a>
+              <a href="#about">About us</a>
+              <a href="#careers">Careers</a>
+              <a href="#contact">Contact</a>
             </div>
             <div className="footer-column">
               <h4>Resources</h4>
-              <a href="#">Documentation</a>
-              <a href="#">Blog</a>
-              <a href="#">Support</a>
+              <a href="#docs">Documentation</a>
+              <a href="#blog">Blog</a>
+              <a href="#support">Support</a>
             </div>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 Onboard Flow. All rights reserved.</p>
+          <p>© 2026 OnboardFlow. All rights reserved.</p>
         </div>
       </footer>
     </div>
