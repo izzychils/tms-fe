@@ -3,6 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Layout from './components/Layout';
 import Landing from './pages/Landing';
+import About from './pages/About';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Resources from './pages/Resources';
@@ -15,8 +19,12 @@ const App: React.FC = () => {
     <BrowserRouter>
       <AppProvider>
         <Routes>
-          {/* Landing Page - No Layout */}
+          {/* Public Pages - No Layout */}
           <Route path="/" element={<Landing />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* Dashboard Routes - With Layout */}
           <Route path="/" element={<Layout />}>

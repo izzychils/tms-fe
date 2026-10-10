@@ -85,13 +85,14 @@ const Landing: React.FC = () => {
             <div className="logo-icon-wrapper">
               <Zap className="logo-icon" />
             </div>
-            <span className="logo-text">OnboardFlow</span>
+            <span className="logo-text">LockedIn</span>
           </Link>
           
           <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
             <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
             <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How it works</a>
-            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>Customers</a>
+            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             <Link to="/dashboard" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>
               Get started
               <ArrowRight size={16} />
@@ -119,12 +120,12 @@ const Landing: React.FC = () => {
             </div>
             
             <h1 className="hero-title">
-              Where teams onboard new hires <span className="text-highlight">seamlessly</span>
+              Where teams welcome new hires <span className="text-highlight">faster</span>
             </h1>
             
             <p className="hero-subtitle">
-              The collaborative onboarding platform to bring new employees up to speed, 
-              track their progress, and ensure nothing falls through the cracks.
+              LockedIn helps teams onboard new employees with clear task lists, real-time progress tracking, 
+              and organized workflows. Keep everyone on track and give HR a complete view of who's ready.
             </p>
             
             <div className="hero-actions">
@@ -300,9 +301,9 @@ const Landing: React.FC = () => {
               <div className="logo-icon-wrapper">
                 <Zap className="logo-icon" />
               </div>
-              <span className="logo-text">OnboardFlow</span>
+              <span className="logo-text">LockedIn</span>
             </div>
-            <p>Make every first day extraordinary</p>
+            <p>Make the first days clear, friendly, and well-organized</p>
           </div>
           <div className="footer-links">
             <div className="footer-column">
@@ -313,20 +314,18 @@ const Landing: React.FC = () => {
             </div>
             <div className="footer-column">
               <h4>Company</h4>
-              <a href="#about">About us</a>
-              <a href="#careers">Careers</a>
-              <a href="#contact">Contact</a>
+              <Link to="/about">About us</Link>
+              <Link to="/contact">Contact</Link>
             </div>
             <div className="footer-column">
-              <h4>Resources</h4>
-              <a href="#docs">Documentation</a>
-              <a href="#blog">Blog</a>
-              <a href="#support">Support</a>
+              <h4>Legal</h4>
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Use</Link>
             </div>
           </div>
         </div>
         <div className="footer-bottom">
-          <p>© 2026 OnboardFlow. All rights reserved.</p>
+          <p>© 2026 LockedIn by MecurixTech. All rights reserved.</p>
         </div>
       </footer>
     </div>
