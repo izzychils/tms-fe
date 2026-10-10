@@ -34,7 +34,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         if (user.id === userId) {
           const updatedTasks = user.tasks.map(task =>
             task.id === taskId
-              ? { ...task, completed, status: completed ? 'completed' : 'in-progress' }
+              ? { ...task, completed, status: (completed ? 'completed' : 'in-progress') as Task['status'] }
               : task
           );
           const completedCount = updatedTasks.filter(t => t.completed).length;
@@ -51,7 +51,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       setCurrentUser(prev => {
         const updatedTasks = prev.tasks.map(task =>
           task.id === taskId
-            ? { ...task, completed, status: completed ? 'completed' : 'in-progress' }
+            ? { ...task, completed, status: (completed ? 'completed' : 'in-progress') as Task['status'] }
             : task
         );
         const completedCount = updatedTasks.filter(t => t.completed).length;

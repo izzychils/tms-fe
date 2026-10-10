@@ -9,7 +9,6 @@ import {
   Users,
   BarChart3,
   ChevronDown,
-  Sparkles,
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { sampleUsers } from '../data/mockData';

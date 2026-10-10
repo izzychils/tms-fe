@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Send, Filter } from 'lucide-react';
+import { Send, Filter } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProgressRing from '../components/ProgressRing';
 import './Team.css';

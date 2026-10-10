@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -6,20 +6,24 @@ import {
   CheckCircle2,
   Users,
   TrendingUp,
-  Zap,
   Shield,
-  Clock,
   BarChart3,
   FileText,
   Bell,
   ChevronRight,
   Menu,
-  X,
+  LogIn,
+  UserPlus,
 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../components/ui/dropdown-menu';
 import './Landing.css';
 
 const Landing: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const features = [
     {
@@ -86,20 +90,73 @@ const Landing: React.FC = () => {
             <span className="logo-text">LockedIn</span>
           </Link>
           
-          <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-            <a href="#features" onClick={() => setMobileMenuOpen(false)}>Features</a>
-            <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)}>How it works</a>
-            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            <Link to="/dashboard" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>
+          {/* Desktop Navigation */}
+          <div className="nav-links-desktop">
+            <a href="#features" className="nav-link">Features</a>
+            <a href="#how-it-works" className="nav-link">How it works</a>
+            <Link to="/about" className="nav-link">About</Link>
+            <Link to="/contact" className="nav-link">Contact</Link>
+          </div>
+
+          {/* Desktop Auth Buttons */}
+          <div className="nav-auth-desktop">
+            <Link to="/signin" className="btn-signin">
+              <LogIn size={16} />
+              Sign in
+            </Link>
+            <Link to="/signup" className="btn-signup">
+              <UserPlus size={16} />
               Get started
-              <ArrowRight size={16} />
             </Link>
           </div>
 
-          <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Dropdown */}
+          <div className="mobile-menu-dropdown">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="mobile-menu-btn-glass" aria-label="Toggle menu">
+                  <Menu size={24} />
+                </button>
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent 
+                className="mobile-menu-dropdown-content"
+                align="end"
+                sideOffset={8}
+              >
+                <DropdownMenuItem asChild>
+                  <a href="#features" className="dropdown-nav-link">
+                    Features
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href="#how-it-works" className="dropdown-nav-link">
+                    How it works
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/about" className="dropdown-nav-link">
+                    About
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact" className="dropdown-nav-link">
+                    Contact
+                  </Link>
+                </DropdownMenuItem>
+                <div className="dropdown-cta-buttons">
+                  <Link to="/signin" className="btn-signin-dropdown">
+                    <LogIn size={16} />
+                    Sign in
+                  </Link>
+                  <Link to="/signup" className="btn-signup-dropdown">
+                    <UserPlus size={16} />
+                    Get started
+                  </Link>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </nav>
 
@@ -127,7 +184,7 @@ const Landing: React.FC = () => {
             </p>
             
             <div className="hero-actions">
-              <Link to="/dashboard" className="btn-hero-primary">
+              <Link to="/signup" className="btn-hero-primary">
                 Start free trial
                 <ArrowRight size={20} />
               </Link>
@@ -283,7 +340,7 @@ const Landing: React.FC = () => {
           >
             <h2>Ready to transform your onboarding?</h2>
             <p>Join hundreds of companies creating better first-day experiences for their employees</p>
-            <Link to="/dashboard" className="btn-cta">
+            <Link to="/signup" className="btn-cta">
               Start your free trial
               <ArrowRight size={20} />
             </Link>
