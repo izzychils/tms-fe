@@ -82,9 +82,7 @@ const Landing: React.FC = () => {
       <nav className="landing-nav">
         <div className="nav-container">
           <Link to="/" className="nav-logo">
-            <div className="logo-icon-wrapper">
-              <Zap className="logo-icon" />
-            </div>
+            <img src="/logo.jpg" alt="LockedIn Logo" className="logo-image" />
             <span className="logo-text">LockedIn</span>
           </Link>
           
@@ -298,9 +296,7 @@ const Landing: React.FC = () => {
         <div className="footer-container">
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="logo-icon-wrapper">
-                <Zap className="logo-icon" />
-              </div>
+              <img src="/logo.jpg" alt="LockedIn Logo" className="logo-image" />
               <span className="logo-text">LockedIn</span>
             </div>
             <p>Make the first days clear, friendly, and well-organized</p>

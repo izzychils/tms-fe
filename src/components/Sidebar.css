@@ -20,6 +20,13 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.sidebar-logo-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 .logo-icon {
   color: var(--primary-light);
   width: 32px;

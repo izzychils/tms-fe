@@ -53,8 +53,8 @@ const Sidebar: React.FC = () => {
     >
       {/* Logo */}
       <div className="sidebar-logo">
-        <Sparkles className="logo-icon" />
-        <h2 className="gradient-text">Onboard Flow</h2>
+        <img src="/logo.jpg" alt="LockedIn Logo" className="sidebar-logo-image" />
+        <h2 className="gradient-text">LockedIn</h2>
       </div>
 
       {/* Role Indicator */}
