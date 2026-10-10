@@ -1,0 +1,222 @@
+.reports-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.report-section {
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+/* Bottlenecks */
+.bottlenecks-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.section-description {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.bottlenecks-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.chart-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chart-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.label-count {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.chart-bar-wrapper {
+  width: 100%;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chart-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.chart-bar.documents {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.8), rgba(99, 102, 241, 0.5));
+}
+
+.chart-bar.orientation {
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.8), rgba(6, 182, 212, 0.5));
+}
+
+.chart-bar.equipment {
+  background: linear-gradient(90deg, rgba(236, 72, 153, 0.8), rgba(236, 72, 153, 0.5));
+}
+
+.chart-bar.training {
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.8), rgba(168, 85, 247, 0.5));
+}
+
+.bar-value {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Department Grid */
+.department-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.department-card {
+  padding: 1.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.department-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+.dept-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.dept-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.dept-progress {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dept-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.dept-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.dept-stat.overdue {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #f87171;
+}
+
+.dept-stat .stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dept-stat .stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dept-stat.completed .stat-value {
+  color: #34d399;
+}
+
+.dept-stat.in-progress .stat-value {
+  color: #fb923c;
+}
+
+.dept-stat.overdue .stat-value {
+  color: #f87171;
+  font-size: 1.25rem;
+  margin-left: auto;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-light), var(--accent-cyan));
+  border-radius: 4px;
+  transition: width 1s ease-out;
+}
+
+@media (max-width: 768px) {
+  .report-section {
+    padding: 1.5rem;
+  }
+
+  .department-grid {
+    grid-template-columns: 1fr;
+  }
+}
