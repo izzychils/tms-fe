@@ -1074,13 +1074,6 @@ const Landing: React.FC = () => {
               <img src="/logo.jpg" alt="Onboad" className="lp-logo-image" />
               <span>Onboad</span>
             </div>
-            <p>
-              The task management platform for employee onboarding. Make the first days clear,
-              friendly and well-organized, for everyone involved.
-            </p>
-            <span className="lp-footer-badge">
-              <Shield size={14} /> Your data stays yours
-            </span>
           </div>
 
           <div className="lp-footer-columns">
@@ -1103,10 +1096,7 @@ const Landing: React.FC = () => {
           </div>
         </div>
         <div className="lp-footer-bottom">
-          <p>© 2026 Onboad by MecurixTech. All rights reserved.</p>
-          <span className="lp-footer-status">
-            <span className="status-dot"></span> All systems operational
-          </span>
+          <p>© 2026 Onboad. All rights reserved.</p>
         </div>
       </footer>
     </div>
