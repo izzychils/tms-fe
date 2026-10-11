@@ -8,8 +8,12 @@ const About: React.FC = () => {
   return (
     <div className="static-page">
       <div className="static-header">
+        <Link to="/" className="static-brand">
+          <img src="/logo.jpg" alt="" />
+          <span>Onboad</span>
+        </Link>
         <Link to="/" className="back-link">
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           Back to home
         </Link>
       </div>
@@ -20,6 +24,7 @@ const About: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+        <p className="page-eyebrow">Company</p>
         <h1>About Us</h1>
         
         <div className="intro-text">

@@ -8,8 +8,12 @@ const Privacy: React.FC = () => {
   return (
     <div className="static-page">
       <div className="static-header">
+        <Link to="/" className="static-brand">
+          <img src="/logo.jpg" alt="" />
+          <span>Onboad</span>
+        </Link>
         <Link to="/" className="back-link">
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           Back to home
         </Link>
       </div>

@@ -5,34 +5,38 @@ import { ArrowLeft, Mail, Phone, MapPin, MessageSquare, CreditCard, Shield, File
 import './StaticPage.css';
 
 const Contact: React.FC = () => {
-  const contactMethods = [
+  const contactMethods: {
+    icon: typeof MessageSquare;
+    title: string;
+    items: { label: string; value: string; href?: string }[];
+  }[] = [
     {
       icon: MessageSquare,
       title: 'General support',
       items: [
-        { label: 'Email', value: 'support@onboad.ng' },
-        { label: 'Phone/WhatsApp', value: '+234 800 000 0000' },
+        { label: 'Email', value: 'support@onboad.ng', href: 'mailto:support@onboad.ng' },
+        { label: 'Phone/WhatsApp', value: '+234 800 000 0000', href: 'tel:+2348000000000' },
       ],
     },
     {
       icon: Mail,
       title: 'Sales and demos',
       items: [
-        { label: 'Email', value: 'sales@onboad.ng' },
+        { label: 'Email', value: 'sales@onboad.ng', href: 'mailto:sales@onboad.ng' },
       ],
     },
     {
       icon: CreditCard,
       title: 'Billing',
       items: [
-        { label: 'Email', value: 'billing@onboad.ng' },
+        { label: 'Email', value: 'billing@onboad.ng', href: 'mailto:billing@onboad.ng' },
       ],
     },
     {
       icon: Shield,
       title: 'Privacy and data requests',
       items: [
-        { label: 'Email', value: 'privacy@onboad.ng' },
+        { label: 'Email', value: 'privacy@onboad.ng', href: 'mailto:privacy@onboad.ng' },
         { label: 'Subject', value: 'Please use "Data Request" as the subject' },
       ],
     },
@@ -40,7 +44,7 @@ const Contact: React.FC = () => {
       icon: FileText,
       title: 'Legal notices',
       items: [
-        { label: 'Email', value: 'legal@onboad.ng' },
+        { label: 'Email', value: 'legal@onboad.ng', href: 'mailto:legal@onboad.ng' },
       ],
     },
   ];
@@ -48,8 +52,12 @@ const Contact: React.FC = () => {
   return (
     <div className="static-page">
       <div className="static-header">
+        <Link to="/" className="static-brand">
+          <img src="/logo.jpg" alt="" />
+          <span>Onboad</span>
+        </Link>
         <Link to="/" className="back-link">
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           Back to home
         </Link>
       </div>
@@ -60,6 +68,7 @@ const Contact: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+        <p className="page-eyebrow">Get in touch</p>
         <h1>Contact Us</h1>
         
         <div className="intro-text">
@@ -85,7 +94,13 @@ const Contact: React.FC = () => {
                 {method.items.map((item) => (
                   <div key={item.label} className="contact-item">
                     <span className="contact-label">{item.label}:</span>
-                    <span className="contact-value">{item.value}</span>
+                    {item.href ? (
+                      <a className="contact-value" href={item.href}>
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className="contact-value">{item.value}</span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -117,7 +132,11 @@ const Contact: React.FC = () => {
             <Globe size={24} />
             <div>
               <h3>Website</h3>
-              <p>https://onboad.ng</p>
+              <p>
+                <a className="info-link" href="https://onboad.ng">
+                  https://onboad.ng
+                </a>
+              </p>
             </div>
           </div>
         </div>
