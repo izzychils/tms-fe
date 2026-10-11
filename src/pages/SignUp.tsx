@@ -125,33 +125,40 @@ const SignUp: React.FC = () => {
               <p>Start onboarding your next hire in under ten minutes</p>
             </div>
 
-            <form className="auth-form" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Full name</label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Israel Iraoya"
-                  className={errors.name ? 'error' : ''}
-                />
-                {errors.name && <span className="error-message">{errors.name}</span>}
-              </div>
+            {/* noValidate: our own messages decide, not the browser tooltip */}
+            <form className="auth-form" onSubmit={handleSubmit} noValidate>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Full name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Israel Iraoya"
+                    autoComplete="name"
+                    className={errors.name ? 'error' : ''}
+                    aria-invalid={Boolean(errors.name)}
+                  />
+                  {errors.name && <span className="error-message">{errors.name}</span>}
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Work email</label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="you@company.com"
-                  className={errors.email ? 'error' : ''}
-                />
-                {errors.email && <span className="error-message">{errors.email}</span>}
+                <div className="form-group">
+                  <label htmlFor="email">Work email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="you@company.com"
+                    autoComplete="email"
+                    className={errors.email ? 'error' : ''}
+                    aria-invalid={Boolean(errors.email)}
+                  />
+                  {errors.email && <span className="error-message">{errors.email}</span>}
+                </div>
               </div>
 
               <div className="form-group">
@@ -166,67 +173,62 @@ const SignUp: React.FC = () => {
                 />
               </div>
 
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <div className="password-input-wrapper">
-                  <input
-                    id="password"
-                    type={showPassword ? 'text' : 'password'}
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="At least 8 characters"
-                    autoComplete="new-password"
-                    className={errors.password ? 'error' : ''}
-                    aria-invalid={Boolean(errors.password)}
-                  />
-                  <button
-                    type="button"
-                    className="password-toggle"
-                    onClick={() => setShowPassword((visible) => !visible)}
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
-                  >
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
+                  <div className="password-input-wrapper">
+                    <input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="At least 8 characters"
+                      autoComplete="new-password"
+                      className={errors.password ? 'error' : ''}
+                      aria-invalid={Boolean(errors.password)}
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() => setShowPassword((visible) => !visible)}
+                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                  {errors.password && <span className="error-message">{errors.password}</span>}
                 </div>
-                {errors.password && <span className="error-message">{errors.password}</span>}
-              </div>
 
-              <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm password</label>
-                <div className="password-input-wrapper">
-                  <input
-                    id="confirmPassword"
-                    type={showConfirm ? 'text' : 'password'}
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    placeholder="Re-enter your password"
-                    autoComplete="new-password"
-                    className={errors.confirmPassword ? 'error' : ''}
-                    aria-invalid={Boolean(errors.confirmPassword)}
-                  />
-                  <button
-                    type="button"
-                    className="password-toggle"
-                    onClick={() => setShowConfirm((visible) => !visible)}
-                    aria-label={showConfirm ? 'Hide password' : 'Show password'}
-                  >
-                    {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword">Confirm password</label>
+                  <div className="password-input-wrapper">
+                    <input
+                      id="confirmPassword"
+                      type={showConfirm ? 'text' : 'password'}
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      placeholder="Re-enter password"
+                      autoComplete="new-password"
+                      className={errors.confirmPassword ? 'error' : ''}
+                      aria-invalid={Boolean(errors.confirmPassword)}
+                    />
+                    <button
+                      type="button"
+                      className="password-toggle"
+                      onClick={() => setShowConfirm((visible) => !visible)}
+                      aria-label={showConfirm ? 'Hide password' : 'Show password'}
+                    >
+                      {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                  {errors.confirmPassword ? (
+                    <span className="error-message">{errors.confirmPassword}</span>
+                  ) : (
+                    passwordsMatch && <span className="match-message">Passwords match</span>
+                  )}
                 </div>
-                {errors.confirmPassword ? (
-                  <span className="error-message">{errors.confirmPassword}</span>
-                ) : (
-                  passwordsMatch && <span className="match-message">Passwords match</span>
-                )}
-              </div>
-
-              <div className="form-footer">
-                <label className="checkbox-label">
-                  <input type="checkbox" defaultChecked />
-                  <span>Email me onboarding tips</span>
-                </label>
               </div>
 
               <button type="submit" className="btn-submit">
@@ -237,6 +239,15 @@ const SignUp: React.FC = () => {
               <p className="auth-switch">
                 Already have an account? <Link to="/signin">Sign in instead</Link>
               </p>
+
+              {/* The opt-in sits under the action so it cannot push the primary
+                  button down the panel. */}
+              <div className="form-footer form-footer-center">
+                <label className="checkbox-label">
+                  <input type="checkbox" defaultChecked />
+                  <span>Email me onboarding tips</span>
+                </label>
+              </div>
             </form>
 
             <div className="demo-notice">

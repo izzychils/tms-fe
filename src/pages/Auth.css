@@ -208,7 +208,7 @@
 }
 
 .auth-page .auth-form-header {
-  margin: 1.2rem 0 1rem;
+  margin: 1rem 0 0.9rem;
 }
 
 .auth-page .auth-form-header h1 {
@@ -226,7 +226,17 @@
 .auth-page .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.75rem;
+}
+
+/* Paired fields on roomy panels (name + email, password + confirm): two rows
+   instead of four is what lifts the primary action out of the foot of the card.
+   The pairs collapse back to a single column on phones. */
+.auth-page .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
 }
 
 .auth-page .form-group {
@@ -311,6 +321,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+/* Footnote under the swap link: centred and quiet, never competing with the CTA */
+.auth-page .form-footer-center {
+  justify-content: center;
+  margin-top: -0.15rem;
 }
 
 .auth-page .checkbox-label {
@@ -516,6 +532,11 @@
   }
 
   .auth-page .auth-form {
+    gap: 0.55rem;
+  }
+
+  .auth-page .form-row {
+    grid-template-columns: 1fr;
     gap: 0.55rem;
   }
 
