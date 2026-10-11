@@ -759,16 +759,19 @@
     inset: -56px -0.35rem -7.5rem;
   }
 
-  /* upper band: two chips, one each side, staggered diagonally */
+  /* upper band: two chips, one each side, staggered diagonally. The band is
+     56px tall (the decor starts 56px above the copy) with the headline at its
+     floor, so chip top + chip height stays under 48px and keeps the float
+     animation's 10px lift inside the band too. */
   .hero-decor .tag-amara {
-    top: 6px;
+    top: 10px;
     right: 0;
     left: auto;
     bottom: auto;
   }
 
   .hero-decor .tag-tobi {
-    top: 28px;
+    top: 20px;
     left: 0;
     right: auto;
     bottom: auto;
