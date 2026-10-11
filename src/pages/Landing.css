@@ -1243,22 +1243,25 @@
   text-align: left;
   padding: 0.95rem 1rem;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* Barely-there glass: the panel behind it is already frosted, so a white
+     fill here just reads as a white box. */
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   color: var(--ink);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .landing-page .case-item:hover {
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.3);
 }
 
+/* Selection is carried by an ink edge and a hairline, not a white fill, so the
+   open use case stays glass like everything around it. */
 .landing-page .case-item.is-active {
-  /* The ink border is what marks the selection now, not an opaque white fill */
-  background: rgba(255, 255, 255, 0.72);
-  border-color: rgba(10, 10, 11, 0.16);
-  box-shadow: 0 10px 26px rgba(10, 10, 11, 0.1);
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(10, 10, 11, 0.2);
+  box-shadow: inset 4px 0 0 0 var(--ink), 0 10px 26px rgba(10, 10, 11, 0.1);
 }
 
 .landing-page .case-head {
