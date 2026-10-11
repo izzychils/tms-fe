@@ -752,11 +752,16 @@
    where it has nothing to cover. */
 @media (max-width: 900px) {
   /* Deep enough for two decor rows: the chip row, then the note on its own row,
-     so a narrow phone can never stack the note on top of Sam or Elena. */
-  .lp-hero {
+     so a narrow phone can never stack the note on top of Sam or Elena. Scoped
+     with .landing-page like the base rule: a bare .lp-hero selector loses to
+     `.landing-page .lp-hero`, which left the hero only 3.5rem of bottom padding
+     and let the showcase cover the Day 1 note. */
+  .landing-page .lp-hero {
     padding-bottom: 9.75rem;
   }
 
+  /* The decor box has to end exactly where the hero's padding ends, otherwise
+     anything anchored to its bottom edge lands under the next section. */
   .hero-decor {
     inset: -56px -0.35rem -9.75rem;
   }
