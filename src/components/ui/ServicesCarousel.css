@@ -1,0 +1,400 @@
+/* ================================================================ services
+   Numbered glass cards in a snap-scrolling carousel. Standalone (not scoped
+   to a page) so the component can be dropped anywhere; colours fall back to
+   the landing page's ink palette through the CSS custom properties below.
+   ======================================================================= */
+
+.svc-carousel {
+  --svc-ink: var(--ink, #0a0a0b);
+  --svc-line: rgba(10, 10, 11, 0.12);
+  --svc-muted: var(--text-secondary, #565c66);
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------- head */
+
+.svc-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.4rem;
+}
+
+.svc-head-copy {
+  max-width: 46rem;
+}
+
+.svc-eyebrow {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--svc-muted);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.svc-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
+  color: var(--svc-ink);
+}
+
+.svc-sub {
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--svc-muted);
+}
+
+.svc-bullets {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.svc-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--svc-muted);
+}
+
+.svc-bullet-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--svc-ink);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------- controls */
+
+.svc-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.svc-count {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--svc-muted);
+  margin-right: 0.45rem;
+}
+
+.svc-count em {
+  font-style: normal;
+  opacity: 0.45;
+  margin: 0 0.15rem;
+}
+
+.svc-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 6px 18px rgba(10, 10, 11, 0.09);
+  color: var(--svc-ink);
+  cursor: pointer;
+  transition: all 0.28s ease;
+}
+
+.svc-arrow:hover:not(:disabled) {
+  background: var(--svc-ink);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(10, 10, 11, 0.24);
+}
+
+.svc-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------------ track */
+
+.svc-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding: 0.4rem 0.3rem 1.4rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.svc-track::-webkit-scrollbar {
+  display: none;
+}
+
+.svc-slide {
+  flex: 0 0 clamp(258px, 30.5%, 346px);
+  scroll-snap-align: start;
+}
+
+/* ------------------------------------------------------------------- card */
+
+.svc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.6rem;
+  height: 424px;
+  padding: 1.9rem 1.7rem;
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.6) 46%,
+    var(--svc-tint, rgba(10, 10, 11, 0.09)) 100%
+  );
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 30px rgba(10, 10, 11, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.svc-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(10, 10, 11, 0.12);
+  box-shadow: 0 24px 54px rgba(10, 10, 11, 0.16);
+}
+
+.svc-card-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 80% at 100% 0%, rgba(255, 255, 255, 0.5) 0%, transparent 60%);
+  opacity: 0.7;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.svc-card:hover .svc-card-veil {
+  opacity: 1;
+}
+
+.svc-card-top {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.svc-card-number {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(10, 10, 11, 0.5);
+}
+
+.svc-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 20px rgba(10, 10, 11, 0.1);
+  color: var(--svc-ink);
+  transition: all 0.35s ease;
+}
+
+.svc-card:hover .svc-card-icon {
+  background: var(--svc-ink);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 12px 26px rgba(10, 10, 11, 0.26);
+}
+
+.svc-card-body {
+  position: relative;
+  margin-top: auto;
+}
+
+.svc-card-body h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  line-height: 1.4;
+  color: var(--svc-ink);
+  margin-bottom: 0.6rem;
+}
+
+.svc-card-body p {
+  font-size: 0.875rem;
+  line-height: 1.68;
+  color: var(--svc-muted);
+}
+
+.svc-card-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--svc-ink);
+  text-decoration: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  transition: all 0.28s ease;
+}
+
+.svc-card-link:hover {
+  background: var(--svc-ink);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ---------------------------------------------------------------- active card */
+/* When in a specific box it is 30% bigger in text */
+.svc-card.is-active {
+  border-color: rgba(10, 10, 11, 0.22);
+  box-shadow: 0 22px 50px rgba(10, 10, 11, 0.18);
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.78) 46%,
+    rgba(10, 10, 11, 0.14) 100%
+  );
+}
+
+.svc-card.is-active .svc-card-body h3 {
+  font-size: 1.33rem; /* 30% bigger than 1.02rem */
+  letter-spacing: 0.08em;
+}
+
+.svc-card.is-active .svc-card-body p {
+  font-size: 1.14rem; /* 30% bigger than 0.875rem */
+  line-height: 1.6;
+  color: var(--svc-ink);
+}
+
+.svc-card.is-active .svc-card-number {
+  font-size: 1.07rem; /* 30% bigger */
+  color: var(--svc-ink);
+}
+
+.svc-card.is-active .svc-card-link {
+  font-size: 1.07rem; /* 30% bigger */
+  padding: 0.6rem 1rem;
+}
+
+/* ------------------------------------------------------------------ tones */
+/* Replaced pink and green colors with the faded black / charcoal glass look */
+
+.svc-tone-slate,
+.svc-tone-mint,
+.svc-tone-amber,
+.svc-tone-lilac,
+.svc-tone-sky,
+.svc-tone-rose {
+  --svc-tint: rgba(10, 10, 11, 0.09);
+}
+
+.svc-tone-slate {
+  --svc-tint: rgba(10, 10, 11, 0.07);
+}
+.svc-tone-mint {
+  --svc-tint: rgba(20, 22, 28, 0.11);
+}
+.svc-tone-amber {
+  --svc-tint: rgba(15, 16, 20, 0.08);
+}
+.svc-tone-lilac {
+  --svc-tint: rgba(22, 24, 30, 0.12);
+}
+.svc-tone-sky {
+  --svc-tint: rgba(12, 14, 18, 0.09);
+}
+.svc-tone-rose {
+  --svc-tint: rgba(18, 20, 25, 0.10);
+}
+
+/* --------------------------------------------------------------- progress */
+
+.svc-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.08);
+  overflow: hidden;
+  max-width: 22rem;
+}
+
+.svc-progress span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--svc-ink);
+  transition: width 0.25s ease;
+}
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .svc-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .svc-controls {
+    order: 2;
+  }
+
+  .svc-slide {
+    flex: 0 0 76%;
+  }
+
+  .svc-card {
+    height: 380px;
+  }
+}
+
+@media (max-width: 480px) {
+  .svc-slide {
+    flex: 0 0 86%;
+  }
+
+  .svc-card {
+    padding: 1.6rem 1.4rem;
+    height: 366px;
+  }
+}

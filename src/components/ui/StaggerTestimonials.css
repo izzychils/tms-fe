@@ -1,0 +1,210 @@
+/* ============================================================ testimonials
+   Staggered stack of notched cards. Standalone component styles — colours fall
+   back to the landing page's ink palette via the custom properties below.
+   ======================================================================= */
+
+.stg-stage {
+  --stg-ink: var(--ink, #0a0a0b);
+  --stg-muted: var(--text-secondary, #565c66);
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.14) 100%);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 14px 40px rgba(10, 10, 11, 0.08);
+}
+
+/* ------------------------------------------------------------------- card */
+
+.stg-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.9rem;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 2px solid rgba(10, 10, 11, 0.1);
+  transition: background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+  transform-origin: center;
+}
+
+.stg-card:hover {
+  border-color: rgba(10, 10, 11, 0.45);
+}
+
+.stg-card:focus-visible {
+  outline: 2px solid var(--stg-ink);
+  outline-offset: 4px;
+}
+
+.stg-card.is-center {
+  z-index: 10;
+  background: var(--stg-ink);
+  border-color: var(--stg-ink);
+  color: #fff;
+  cursor: default;
+}
+
+.stg-notch-line {
+  position: absolute;
+  display: block;
+  background: rgba(10, 10, 11, 0.16);
+  transform-origin: top right;
+  transform: rotate(45deg);
+}
+
+.stg-card.is-center .stg-notch-line {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+/* ----------------------------------------------------------------- avatar */
+
+.stg-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 48px;
+  margin-bottom: 1.1rem;
+  overflow: hidden;
+  background: rgba(10, 10, 11, 0.08);
+  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.9);
+  flex-shrink: 0;
+}
+
+.stg-card.is-center .stg-avatar {
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.28);
+}
+
+.stg-avatar-initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--stg-ink);
+}
+
+.stg-card.is-center .stg-avatar-initials {
+  color: #fff;
+}
+
+.stg-avatar img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ------------------------------------------------------------------ quote */
+
+.stg-quote {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--stg-ink);
+}
+
+.stg-card.is-center .stg-quote {
+  color: #fff;
+}
+
+.stg-by {
+  position: absolute;
+  left: 1.9rem;
+  right: 1.9rem;
+  bottom: 1.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--stg-ink);
+}
+
+.stg-by span {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--stg-muted);
+  margin-top: 0.1rem;
+}
+
+.stg-card.is-center .stg-by {
+  color: #fff;
+}
+
+.stg-card.is-center .stg-by span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------- controls */
+
+.stg-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.stg-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 2px solid rgba(10, 10, 11, 0.14);
+  color: var(--stg-ink);
+  cursor: pointer;
+  transition: all 0.28s ease;
+}
+
+.stg-arrow:hover {
+  background: var(--stg-ink);
+  border-color: var(--stg-ink);
+  color: #fff;
+}
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 640px) {
+  .stg-stage {
+    height: 500px;
+    border-radius: 22px;
+  }
+
+  .stg-card {
+    padding: 1.6rem 1.5rem;
+  }
+
+  .stg-quote {
+    font-size: 0.92rem;
+  }
+
+  .stg-by {
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}

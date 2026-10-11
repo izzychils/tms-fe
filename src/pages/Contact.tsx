@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Phone, MapPin, MessageSquare, CreditCard, Shield, FileText } from 'lucide-react';
+import { ArrowLeft, Mail, Phone, MapPin, MessageSquare, CreditCard, Shield, FileText, Globe } from 'lucide-react';
 import './StaticPage.css';
 
 const Contact: React.FC = () => {
@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
       title: 'General support',
       items: [
         { label: 'Email', value: 'support@onboad.ng' },
-        { label: 'Phone/WhatsApp', value: '+234 XXX XXX XXXX' },
+        { label: 'Phone/WhatsApp', value: '+234 800 000 0000' },
       ],
     },
     {
@@ -100,7 +100,7 @@ const Contact: React.FC = () => {
               <h3>Company</h3>
               <p><strong>MecurixTech</strong></p>
               <p>Rivers State, Nigeria</p>
-              <p>Registered address: [Registered office address]</p>
+              <p>Registered address: Rivers State, Nigeria</p>
             </div>
           </div>
 
@@ -112,13 +112,20 @@ const Contact: React.FC = () => {
               <p>We aim to respond within 24 business hours</p>
             </div>
           </div>
+
+          <div className="info-block">
+            <Globe size={24} />
+            <div>
+              <h3>Website</h3>
+              <p>https://onboad.ng</p>
+            </div>
+          </div>
         </div>
 
         <div className="security-note">
           <Shield size={20} />
           <p>
-            <strong>Security note:</strong> Please include your organization name and a short description of the issue. 
-            Never send passwords or private keys via email.
+            <strong>Security note:</strong> Please include your organisation name and a short description of the issue. Never send passwords or private keys.
           </p>
         </div>
 
