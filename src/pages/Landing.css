@@ -836,11 +836,13 @@
   gap: 1.5rem;
   padding: 1.2rem;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.34);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 30px 80px rgba(10, 10, 11, 0.12);
+  /* No fill at all: the frosted blur and an ink hairline are the whole panel,
+     so nothing stacks up into a white box. */
+  background: transparent;
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(10, 10, 11, 0.09);
+  box-shadow: 0 30px 80px rgba(10, 10, 11, 0.1);
 }
 
 /* The app shell is glass, not a white card: the window's frosted background
@@ -852,10 +854,10 @@
   min-height: 460px;
   border-radius: 20px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.22);
+  background: transparent;
   backdrop-filter: blur(18px) saturate(170%);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(10, 10, 11, 0.08);
 }
 
 /* app sidebar */
@@ -863,8 +865,8 @@
   display: flex;
   flex-direction: column;
   padding: 1.1rem 0.9rem;
-  background: rgba(255, 255, 255, 0.18);
-  border-right: 1px solid rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border-right: 1px solid rgba(10, 10, 11, 0.07);
 }
 
 .landing-page .app-sidebar-brand {
@@ -902,11 +904,10 @@
 }
 
 .landing-page .app-side-item:first-child {
-  background: rgba(255, 255, 255, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.14);
   color: var(--ink);
   font-weight: 600;
-  box-shadow: 0 1px 4px rgba(10, 10, 11, 0.05);
 }
 
 .landing-page .app-side-badge {
@@ -1033,9 +1034,9 @@
   gap: 0.65rem;
   padding: 0.62rem 0.8rem;
   border-radius: 11px;
-  /* Glass rows, not white ones: the frosted window shows through them. */
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  /* Outlined rows: no fill, so the page shows straight through them. */
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.1);
   margin-bottom: 0.45rem;
   font-size: 0.86rem;
   transition: all 0.3s ease;
@@ -1082,8 +1083,8 @@
 }
 
 .landing-page .board-col {
-  background: rgba(255, 255, 255, 0.26);
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.08);
   border-radius: 13px;
   padding: 0.7rem;
 }
@@ -1109,8 +1110,8 @@
 }
 
 .landing-page .board-card {
-  background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.1);
   border-radius: 10px;
   padding: 0.65rem 0.7rem;
   margin-bottom: 0.55rem;
@@ -1166,8 +1167,8 @@
   gap: 0.7rem;
   height: 240px;
   padding: 1rem 1.1rem 0.7rem;
-  background: rgba(255, 255, 255, 0.46);
-  border: 1px solid rgba(255, 255, 255, 0.68);
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.09);
   border-radius: 14px;
 }
 
@@ -1212,8 +1213,8 @@
 .landing-page .report-kpi {
   flex: 1;
   padding: 0.75rem 0.9rem;
-  background: rgba(255, 255, 255, 0.46);
-  border: 1px solid rgba(255, 255, 255, 0.68);
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.09);
   border-radius: 13px;
   display: flex;
   flex-direction: column;
@@ -1243,25 +1244,25 @@
   text-align: left;
   padding: 0.95rem 1rem;
   border-radius: 15px;
-  /* Barely-there glass: the panel behind it is already frosted, so a white
-     fill here just reads as a white box. */
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* No fill: on a light page any white here reads as a white box. */
+  background: transparent;
+  border: 1px solid rgba(10, 10, 11, 0.1);
   color: var(--ink);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .landing-page .case-item:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  border-color: rgba(10, 10, 11, 0.22);
 }
 
-/* Selection is carried by an ink edge and a hairline, not a white fill, so the
-   open use case stays glass like everything around it. */
+/* Selection is carried by an ink edge and the stronger hairline, so the open
+   use case needs no fill at all. */
 .landing-page .case-item.is-active {
-  background: rgba(255, 255, 255, 0.26);
-  border-color: rgba(10, 10, 11, 0.2);
-  box-shadow: inset 4px 0 0 0 var(--ink), 0 10px 26px rgba(10, 10, 11, 0.1);
+  background: transparent;
+  border-color: rgba(10, 10, 11, 0.26);
+  box-shadow: inset 4px 0 0 0 var(--ink), 0 10px 26px rgba(10, 10, 11, 0.08);
 }
 
 .landing-page .case-head {
@@ -1294,7 +1295,8 @@
 }
 
 .landing-page .case-link:hover {
-  background: rgba(255, 255, 255, 0.6);
+  /* Ink tint for the hover cue: the last white fill in this section is gone. */
+  background: rgba(10, 10, 11, 0.05);
   gap: 0.7rem;
 }
 
@@ -1310,17 +1312,19 @@
   padding: 1.4rem 1.2rem;
   border-radius: 18px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.45);
+  /* Same rule as the rest of the section: outline, no fill. */
+  background: transparent;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 10, 11, 0.09);
   box-shadow: var(--glass-shadow);
   transition: all 0.3s ease;
 }
 
 .landing-page .stat-cell:hover {
   transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.8);
+  background: transparent;
+  border-color: rgba(10, 10, 11, 0.2);
 }
 
 .landing-page .stat-cell strong {
