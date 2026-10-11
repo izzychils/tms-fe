@@ -15,8 +15,6 @@ export interface Testimonial {
   quote: string;
   name: string;
   role: string;
-  /** Portrait image; falls back to initials if it fails to load. */
-  image: string;
 }
 
 interface StaggerTestimonialsProps {
@@ -34,23 +32,16 @@ interface CardProps {
   cardSize: number;
 }
 
-const Avatar: React.FC<{ name: string; image: string }> = ({ name, image }) => {
-  const [failed, setFailed] = useState(false);
-  const initials = name
-    .split(' ')
-    .map((part) => part.charAt(0))
-    .slice(0, 2)
-    .join('');
-
-  return (
-    <span className="stg-avatar">
-      <span className="stg-avatar-initials">{initials}</span>
-      {!failed && (
-        <img src={image} alt="" loading="lazy" onError={() => setFailed(true)} />
-      )}
-    </span>
-  );
-};
+/**
+ * The card mark is the Onboad logo plus the wordmark: no photographs of people,
+ * so the stack reads as one brand across every card.
+ */
+const BrandMark: React.FC = () => (
+  <span className="stg-brand">
+    <img src="/logo.jpg" alt="" className="stg-brand-logo" />
+    <span className="stg-brand-name">Onboad</span>
+  </span>
+);
 
 const TestimonialCard: React.FC<CardProps> = ({ position, testimonial, handleMove, cardSize }) => {
   const isCenter = position === 0;
@@ -87,7 +78,7 @@ const TestimonialCard: React.FC<CardProps> = ({ position, testimonial, handleMov
         style={{ right: -2, top: NOTCH - 2, width: NOTCH_DIAGONAL, height: 2 }}
       />
 
-      <Avatar name={testimonial.name} image={testimonial.image} />
+      <BrandMark />
 
       <h3 className="stg-quote">&ldquo;{testimonial.quote}&rdquo;</h3>
 
@@ -112,7 +103,7 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ testim
   useEffect(() => {
     const updateSize = () => {
       const { matches } = window.matchMedia('(min-width: 640px)');
-      setCardSize(matches ? 365 : 280);
+      setCardSize(matches ? 365 : 310);
     };
 
     updateSize();

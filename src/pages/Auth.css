@@ -2,7 +2,7 @@
    Sign in / sign up. Two-panel glass card: inked brand panel on the left,
    frosted form on the right. Same ink-on-glass language as the landing page.
 
-   Everything is scoped under .auth-page on purpose — Resources.css already
+   Everything is scoped under .auth-page on purpose: Resources.css already
    defines a global .form-group, and these pages reuse that class name.
    ======================================================================= */
 

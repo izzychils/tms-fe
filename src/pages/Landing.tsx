@@ -14,7 +14,6 @@ import {
   FileText,
   LayoutGrid,
   ListChecks,
-  LogIn,
   Menu,
   MessageSquare,
   Shield,
@@ -133,10 +132,10 @@ const BOARD_COLUMNS = [
 ];
 
 const STATS = [
-  { value: '10,000+', label: 'Employees onboarded' },
+  { value: '1+', label: 'Employees onboarded' },
   { value: '95%', label: 'Average task completion' },
   { value: '60%', label: 'Less admin time per hire' },
-  { value: '500+', label: 'Companies run on Onboad' },
+  { value: '200+', label: 'Companies run on Onboad' },
 ];
 
 const CHAOS_BADGES = [
@@ -261,40 +260,30 @@ const TESTIMONIALS: Testimonial[] = [
       'We cut ramp-up time from three weeks to nine days. Managers finally see progress without having to ask for it every morning.',
     name: 'Amara Okafor',
     role: 'Head of People, Northwind',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=240&fit=crop&crop=faces&q=80',
   },
   {
     quote:
       'The templates alone paid for the first year. Every new engineer now gets the same clean first week, with zero reminders from me.',
     name: 'Daniel Kim',
     role: 'Engineering Manager, Lumen Labs',
-    image:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=240&fit=crop&crop=faces&q=80',
   },
   {
     quote:
-      'Our remote team stopped losing new hires in Slack. Onboad gives every task an owner, a date and a reminder, nobody falls through.',
+      'Our remote team stopped losing new hires in Slack. Onboad gives every task an owner, a date and a reminder, so nobody falls through.',
     name: 'Sofia Alvarez',
     role: 'COO, Kana Studio',
-    image:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=240&fit=crop&crop=faces&q=80',
   },
   {
     quote:
-      'Handover between HR and IT used to happen in a group chat. Now Onboad is our shared board, and nobody has to ask twice.',
+      'Handover between HR and IT used to happen in a group chat. Now the handover is the board, so nobody has to ask twice.',
     name: 'Priya Raman',
     role: 'Head of Talent, Vertex',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=240&fit=crop&crop=faces&q=80',
   },
   {
     quote:
       'Ninety new hires in a single week with Onboad, and every one of them had a laptop and a buddy on day one. We have never been this calm.',
     name: 'Marcus Bell',
-    role: 'IT Operations Lead, Oneflow',
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=240&fit=crop&crop=faces&q=80',
+    role: 'IT Operations Lead, MecurixTech',
   },
 ];
 
@@ -477,9 +466,7 @@ const Landing: React.FC = () => {
         <div className="lp-blob lp-blob-b"></div>
         <div className="lp-blob lp-blob-c"></div>
         <div className="lp-grid"></div>
-      </div>
-
-      {/* Navigation — glass bar, Miro layout */}
+      </div>          {/* Navigation: glass bar, Miro layout */}
       <nav className="lp-nav">
         <div className="lp-nav-inner">
           <Link to="/" className="lp-logo">
@@ -500,13 +487,6 @@ const Landing: React.FC = () => {
           </div>
 
           <div className="lp-nav-right">
-            <a href="#testimonials" className="nav-pill nav-pill-ghost">
-              Contact sales
-            </a>
-            <Link to="/signin" className="nav-pill nav-pill-ghost">
-              <LogIn size={15} />
-              Log in
-            </Link>
             <Link to="/signup" className="nav-cta">
               Get started free
               <ArrowRight size={16} />
@@ -586,33 +566,9 @@ const Landing: React.FC = () => {
             )}
           </div>
         </div>
-      </nav>
-
-      {/* Hero — inspo 3 layout, black instead of blue */}
+      </nav>          {/* Hero: inspo 3 layout, black instead of blue */}
       <header className="lp-hero">
         <div className="lp-hero-inner">
-          <div className="hero-decor" aria-hidden>
-            <CursorTag name="Amara · HR" className="tag-amara" />
-            <CursorTag name="Tobi · Manager" className="tag-tobi" />
-            <CursorTag name="Elena · Mentor" className="tag-elena" />
-            <CursorTag name="Sam · Day 1" className="tag-sam" />
-            <div className="sticky-note">
-              <span className="sticky-note-title">Day 1 plan</span>
-              <span className="sticky-note-line">✓ Laptop ready</span>
-              <span className="sticky-note-line">✓ Buddy assigned</span>
-              <span className="sticky-note-line">→ First task shipped</span>
-            </div>
-            <svg className="hero-squiggle" viewBox="0 0 220 90" fill="none">
-              <path
-                d="M4 70c34-58 62 22 96-18s58 34 112-38"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className="hero-block"></span>
-          </div>
-
           <motion.h1
             className="lp-hero-title"
             initial={{ y: 28 }}
@@ -658,10 +614,33 @@ const Landing: React.FC = () => {
           >
             Free 14-day trial · Unlimited tasks · No credit card required
           </motion.p>
-        </div>
-      </header>
 
-      {/* Product showcase — Miro-style window with use-case list */}
+          {/* Floating decor. Decorative only on desktop (absolute, in the side
+              margins); on mobile the CSS lets it flow below the copy so the
+              chips stay visible without ever covering the headline. */}
+          <div className="hero-decor" aria-hidden>
+            <CursorTag name="Amara · HR" className="tag-amara" />
+            <CursorTag name="Tobi · Manager" className="tag-tobi" />
+            <CursorTag name="Elena · Mentor" className="tag-elena" />
+            <CursorTag name="Sam · Day 1" className="tag-sam" />
+            <div className="sticky-note">
+              <span className="sticky-note-title">Day 1 plan</span>
+              <span className="sticky-note-line">✓ Laptop ready</span>
+              <span className="sticky-note-line">✓ Buddy assigned</span>
+              <span className="sticky-note-line">→ First task shipped</span>
+            </div>
+            <svg className="hero-squiggle" viewBox="0 0 220 90" fill="none">
+              <path
+                d="M4 70c34-58 62 22 96-18s58 34 112-38"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+            </svg>
+            <span className="hero-block"></span>
+          </div>
+        </div>
+      </header>          {/* Product showcase: Miro-style window with use-case list */}
       <section id="showcase" className="showcase-section">
         <motion.div
           className="showcase-window"
@@ -840,18 +819,17 @@ const Landing: React.FC = () => {
 
       {/* Trusted by */}
       <section className="logos-section">
-        <p className="logos-title">Trusted by teams building great first weeks</p>
+        <p className="logos-title">Trusted by</p>
         <div className="logos-row">
-          <span>NORTHWIND</span>
-          <span>Lumen Labs</span>
-          <span>KANA.</span>
-          <span>vertex</span>
-          <span>Doel</span>
-          <span>ONEFLOW</span>
+          <span>MecurixTech</span>
+          <span>Rekraft</span>
+          <span>Iventverse</span>
+          <span>Schoolpaddi</span>
+          <span>Nextra</span>
         </div>
       </section>
 
-      {/* Chaos section — inspo 1 */}
+      {/* Chaos section: inspo 1 */}
       <section className="chaos-section">
         <div className="chaos-inner">
           <div className="chaos-decor" aria-hidden>
@@ -901,7 +879,7 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Imagine section — inline chips with glass hover animation */}
+      {/* Imagine section: inline chips with glass hover animation */}
       <section className="imagine-section">
         <motion.p
           className="imagine-text"
@@ -932,14 +910,14 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Features — inspo 4 value list, now with the numbered card carousel */}
+      {/* Features: inspo 4 value list, with the numbered card carousel */}
       <section id="features" className="features-section">
         <div className="features-inner">
           <ServicesCarousel
             services={SERVICES}
             eyebrow="Task management, built for people"
-            title="Your onboarding depends on clear tasks, real accountability, and fast ramp-ups."
-            subtitle="Six pieces of one system: drag through them the way a new hire drags a card across the board."
+            title="Your first weeks depend on clear tasks, real owners and fast ramp-ups."
+            subtitle="Six pieces of one system, from the board a manager opens first to the checklist a new hire ticks off."
             bullets={[
               'Assign every task a real owner',
               'Keep due dates honest with automatic reminders',
@@ -949,7 +927,7 @@ const Landing: React.FC = () => {
         </div>
       </section>
 
-      {/* Pain points → Meet Onboad — inspo 2 */}
+      {/* Pain points, then Meet Onboad (inspo 2) */}
       <section className="pain-section">
         <div className="pain-inner">
           <motion.h2

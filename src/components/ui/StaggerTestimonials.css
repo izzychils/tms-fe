@@ -1,5 +1,5 @@
 /* ============================================================ testimonials
-   Staggered stack of notched cards. Standalone component styles — colours fall
+   Staggered stack of notched cards. Standalone component styles: colours fall
    back to the landing page's ink palette via the custom properties below.
    ======================================================================= */
 
@@ -66,49 +66,47 @@
   background: rgba(255, 255, 255, 0.32);
 }
 
-/* ----------------------------------------------------------------- avatar */
+/* ------------------------------------------------------------- brand mark
+   The Onboad logo and wordmark replace the old portraits: every card is one
+   brand, and no photographs of people are shipped with the page.          */
 
-.stg-avatar {
-  position: relative;
+.stg-brand {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 48px;
+  gap: 0.5rem;
+  align-self: flex-start;
   margin-bottom: 1.1rem;
-  overflow: hidden;
-  background: rgba(10, 10, 11, 0.08);
+  padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(10, 10, 11, 0.1);
   box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.9);
   flex-shrink: 0;
 }
 
-.stg-card.is-center .stg-avatar {
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.28);
+.stg-brand-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(10, 10, 11, 0.08);
 }
 
-.stg-avatar-initials {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.stg-brand-name {
   font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
   color: var(--stg-ink);
 }
 
-.stg-card.is-center .stg-avatar-initials {
-  color: #fff;
+.stg-card.is-center .stg-brand {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 3px 3px 0 rgba(255, 255, 255, 0.2);
 }
 
-.stg-avatar img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+.stg-card.is-center .stg-brand-name {
+  color: #fff;
 }
 
 /* ------------------------------------------------------------------ quote */
@@ -190,21 +188,27 @@
 
 @media (max-width: 640px) {
   .stg-stage {
-    height: 500px;
+    height: 560px;
     border-radius: 22px;
   }
 
+  /* Reserve room for the name/role block so a long quote is never hidden
+     behind it in the smaller card. */
   .stg-card {
-    padding: 1.6rem 1.5rem;
+    padding: 1.5rem 1.4rem 4.9rem;
+  }
+
+  .stg-brand {
+    margin-bottom: 0.9rem;
   }
 
   .stg-quote {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
   }
 
   .stg-by {
-    left: 1.5rem;
-    right: 1.5rem;
-    bottom: 1.5rem;
+    left: 1.4rem;
+    right: 1.4rem;
+    bottom: 1.6rem;
   }
 }

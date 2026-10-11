@@ -383,18 +383,45 @@
     flex: 0 0 76%;
   }
 
+  /* The height follows the content on phones: a taller active card can no
+     longer push the "See it in action" link out of the clipped card. */
   .svc-card {
-    height: 380px;
+    height: auto;
+    min-height: 380px;
+    gap: 1.3rem;
+    padding: 1.6rem 1.45rem;
+  }
+
+  .svc-card-body h3 {
+    font-size: 0.95rem;
+  }
+
+  .svc-card.is-active .svc-card-body h3 {
+    font-size: 1.2rem;
+  }
+
+  .svc-card.is-active .svc-card-body p {
+    font-size: 1rem;
+  }
+
+  .svc-card-link {
+    align-self: stretch;
+    justify-content: center;
+    padding: 0.72rem 1rem;
   }
 }
 
 @media (max-width: 480px) {
+  .svc-head h2 {
+    font-size: 1.65rem;
+  }
+
   .svc-slide {
-    flex: 0 0 86%;
+    flex: 0 0 88%;
   }
 
   .svc-card {
-    padding: 1.6rem 1.4rem;
-    height: 366px;
+    padding: 1.45rem 1.25rem;
+    min-height: 352px;
   }
 }

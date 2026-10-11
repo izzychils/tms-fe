@@ -8,7 +8,7 @@ import './ServicesCarousel.css';
  *
  * Ported from the shadcn/Tailwind "animated service card" recipe to this
  * project's conventions: hand-written CSS + framer-motion (no Tailwind, no
- * embla — the track uses native scroll-snap so touch drag keeps working).
+ * embla: the track uses native scroll-snap so touch drag keeps working).
  */
 
 export type ServiceTone = 'slate' | 'mint' | 'amber' | 'lilac' | 'sky' | 'rose';
