@@ -47,7 +47,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle Gradient Background */
+/* Gradient Background
+   The same backdrop the marketing site uses, so the frosted cards have
+   something to actually blur. A pure white page made every glass panel read as
+   flat white, which is exactly what the dashboard pages looked like. */
 .liquid-background {
   position: fixed;
   top: 0;
@@ -56,21 +59,21 @@ body {
   height: 100%;
   z-index: -1;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fb 100%);
+  background: radial-gradient(1200px 600px at 50% -10%, #ffffff 0%, #f4f5f8 55%, #eef0f4 100%);
 }
 
 .liquid-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
+  filter: blur(110px);
+  opacity: 0.55;
   animation: float 25s ease-in-out infinite;
 }
 
 .liquid-blob:nth-child(1) {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(10, 10, 11, 0.16) 0%, transparent 70%);
   top: -300px;
   right: -200px;
   animation-delay: 0s;
@@ -79,7 +82,7 @@ body {
 .liquid-blob:nth-child(2) {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(122, 128, 140, 0.24) 0%, transparent 70%);
   bottom: -250px;
   left: -150px;
   animation-delay: 8s;
@@ -89,11 +92,21 @@ body {
 .liquid-blob:nth-child(3) {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(10, 10, 11, 0.1) 0%, transparent 70%);
   top: 50%;
   left: 50%;
   animation-delay: 15s;
   animation-duration: 35s;
+}
+
+.liquid-blob:nth-child(4) {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle, rgba(122, 128, 140, 0.2) 0%, transparent 70%);
+  top: 12%;
+  left: -140px;
+  animation-delay: 21s;
+  animation-duration: 32s;
 }
 
 @keyframes float {
@@ -108,26 +121,34 @@ body {
   }
 }
 
-/* Clean Card - Light Theme */
+/* Glass cards: the same fill and blur as the navbar
+   (rgba(255,255,255,0.5) + blur(20px) saturate(180%)), so every dashboard and
+   profile panel is frosted glass instead of a white box. */
 .glass-card {
-  background: var(--bg-light);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: 16px;
-  box-shadow: var(--glass-shadow);
+  box-shadow: 0 8px 32px rgba(10, 10, 11, 0.08);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 14px 40px rgba(10, 10, 11, 0.12);
   transform: translateY(-2px);
 }
 
 /* Stronger Card with subtle background */
 .glass-card-strong {
-  background: var(--bg-light);
-  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 20px;
-  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 34px rgba(10, 10, 11, 0.1);
 }
 
 /* Scrollbar */

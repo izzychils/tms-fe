@@ -68,7 +68,7 @@ const SignIn: React.FC = () => {
               </ul>
             </div>
 
-            <p className="auth-brand-footer">Trusted by 500+ companies worldwide</p>
+            <p className="auth-brand-footer">Trusted by 200+ companies onboarding with Onboad</p>
           </div>
         </aside>
 
@@ -81,9 +81,6 @@ const SignIn: React.FC = () => {
             </Link>
 
             <div className="auth-form-header">
-              <div className="auth-icon-wrapper">
-                <LogIn size={24} />
-              </div>
               <h1>Welcome back</h1>
               <p>Sign in to your account to continue</p>
             </div>
@@ -132,7 +129,8 @@ const SignIn: React.FC = () => {
                   <input type="checkbox" />
                   <span>Remember me</span>
                 </label>
-                <Link to="/forgot-password" className="forgot-link">
+                {/* No self-serve reset in the demo: send people to support. */}
+                <Link to="/contact" className="forgot-link">
                   Forgot password?
                 </Link>
               </div>
@@ -142,13 +140,9 @@ const SignIn: React.FC = () => {
                 <LogIn size={18} />
               </button>
 
-              <div className="auth-divider">
-                <span>Don't have an account?</span>
-              </div>
-
-              <Link to="/signup" className="btn-secondary-link">
-                Create an account
-              </Link>
+              <p className="auth-switch">
+                Don&apos;t have an account? <Link to="/signup">Create a workspace</Link>
+              </p>
             </form>
 
             <div className="demo-notice">

@@ -31,6 +31,33 @@ interface ServicesCarouselProps {
   id?: string;
 }
 
+/** Must match the track gap in ServicesCarousel.css. */
+const SLIDE_GAP = 18;
+
+interface TrackMetrics {
+  step: number;
+  max: number;
+  atStart: boolean;
+  atEnd: boolean;
+}
+
+/**
+ * One place to read the track's geometry. The step is the card width *plus* the
+ * gap, because scrolling by the bare card width made the last card unreachable
+ * and left the arrows doing nothing at the end of the row.
+ */
+const readTrack = (track: HTMLDivElement | null, count: number): TrackMetrics | null => {
+  if (!track) return null;
+  const step = (track.firstElementChild?.clientWidth ?? track.clientWidth) + SLIDE_GAP;
+  const max = Math.max(0, track.scrollWidth - track.clientWidth);
+  return {
+    step,
+    max,
+    atStart: track.scrollLeft <= 4,
+    atEnd: count > 1 && track.scrollLeft >= max - 4,
+  };
+};
+
 const cardVariants = {
   hidden: { y: 44 },
   visible: (index: number) => ({
@@ -93,10 +120,15 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
 
   const measure = useCallback(() => {
     const track = trackRef.current;
-    if (!track) return;
-    const stepSize = track.firstElementChild?.clientWidth ?? track.clientWidth;
-    const calculatedIndex = Math.min(services.length - 1, Math.max(0, Math.round(track.scrollLeft / stepSize)));
-    setActiveIndex(calculatedIndex);
+    const metrics = readTrack(track, services.length);
+    if (!track || !metrics) return;
+    if (metrics.atEnd) {
+      setActiveIndex(services.length - 1);
+      return;
+    }
+    setActiveIndex(
+      Math.min(services.length - 1, Math.max(0, Math.round(track.scrollLeft / metrics.step)))
+    );
   }, [services.length]);
 
   useEffect(() => {
@@ -113,27 +145,35 @@ export const ServicesCarousel: React.FC<ServicesCarouselProps> = ({
 
   const scrollBySlide = (direction: number) => {
     const track = trackRef.current;
-    if (!track) return;
-    const gap = 18;
-    const slide = (track.firstElementChild?.clientWidth ?? track.clientWidth) + gap;
+    const metrics = readTrack(track, services.length);
+    if (!track || !metrics) return;
 
-    if (direction > 0 && activeIndex >= services.length - 1) {
-      // Loop back to card 1
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else if (direction < 0 && activeIndex <= 0) {
-      // Loop to card 6
-      track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: direction * slide, behavior: 'smooth' });
+    if (direction > 0) {
+      // Past the last card the row wraps to the first, so next never dead-ends.
+      if (metrics.atEnd) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
+      track.scrollTo({
+        left: Math.min(metrics.max, track.scrollLeft + metrics.step),
+        behavior: 'smooth',
+      });
+      return;
     }
+
+    if (metrics.atStart) {
+      // Back from the first card goes to the last one.
+      track.scrollTo({ left: metrics.max, behavior: 'smooth' });
+      return;
+    }
+    track.scrollTo({ left: Math.max(0, track.scrollLeft - metrics.step), behavior: 'smooth' });
   };
 
   const scrollToSlide = (index: number) => {
     const track = trackRef.current;
-    if (!track) return;
-    const gap = 18;
-    const slide = (track.firstElementChild?.clientWidth ?? track.clientWidth) + gap;
-    track.scrollTo({ left: index * slide, behavior: 'smooth' });
+    const metrics = readTrack(track, services.length);
+    if (!track || !metrics) return;
+    track.scrollTo({ left: Math.min(metrics.max, index * metrics.step), behavior: 'smooth' });
   };
 
   const progress = services.length > 1 ? activeIndex / (services.length - 1) : 1;

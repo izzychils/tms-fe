@@ -211,19 +211,6 @@
   margin: 1.2rem 0 1rem;
 }
 
-.auth-page .auth-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: var(--ink);
-  color: #fff;
-  margin-bottom: 0.8rem;
-  box-shadow: 0 8px 20px rgba(10, 10, 11, 0.24);
-}
-
 .auth-page .auth-form-header h1 {
   font-size: 1.5rem;
   font-weight: 800;
@@ -378,39 +365,31 @@
   box-shadow: 0 14px 30px rgba(10, 10, 11, 0.32);
 }
 
-.auth-page .auth-divider {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-
-.auth-page .auth-divider::before,
-.auth-page .auth-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(10, 10, 11, 0.1);
-}
-
-.auth-page .btn-secondary-link {
-  display: block;
+/* One compact line directly under the submit button. The old divider plus a
+   full-width secondary button pushed this swap link right to the bottom of the
+   panel, which is what made it feel stranded. */
+.auth-page .auth-switch {
   text-align: center;
-  padding: 0.7rem 1.1rem;
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.auth-page .auth-switch a {
+  font-weight: 700;
   color: var(--ink);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(10, 10, 11, 0.14);
-  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(10, 10, 11, 0.25);
+  transition: border-color 0.25s ease;
 }
 
-.auth-page .btn-secondary-link:hover {
-  background: #fff;
-  border-color: rgba(10, 10, 11, 0.28);
+.auth-page .auth-switch a:hover {
+  border-bottom-color: var(--ink);
+}
+
+.auth-page .match-message {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--accent-green, #2bc48a);
 }
 
 .auth-page .demo-notice {
@@ -469,5 +448,113 @@
   .auth-page .auth-form-panel {
     padding: 1.6rem 1.4rem 2rem;
     overflow-y: visible;
+  }
+}
+
+/* ------------------------------------------------------------- small phones
+   One screen, no scrolling: the brand panel collapses to a slim strip and the
+   form tightens up, so every field, the submit button and the swap link fit on
+   a phone without a scrollbar. */
+
+@media (max-width: 640px) {
+  .auth-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 100vh;
+    height: 100dvh;
+    padding: 0.6rem;
+    overflow: hidden;
+  }
+
+  .auth-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    max-height: 100%;
+    border-radius: 22px;
+  }
+
+  /* Slim brand strip: just the logo, no pitch or feature list */
+  .auth-page .auth-brand-panel {
+    padding: 0.7rem 1rem;
+    background: linear-gradient(100deg, #101114 0%, #1d1f24 70%, #0a0a0b 100%);
+  }
+
+  .auth-page .auth-brand-info,
+  .auth-page .auth-feature-list,
+  .auth-page .auth-brand-footer {
+    display: none;
+  }
+
+  .auth-page .auth-logo-image {
+    width: 26px;
+    height: 26px;
+  }
+
+  .auth-page .auth-brand-logo {
+    font-size: 1rem;
+  }
+
+  .auth-page .auth-form-panel {
+    padding: 0.9rem 1rem 1rem;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .auth-page .auth-form-header {
+    margin: 0.55rem 0 0.7rem;
+  }
+
+  .auth-page .auth-form-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .auth-page .auth-form-header p {
+    font-size: 0.78rem;
+  }
+
+  .auth-page .auth-form {
+    gap: 0.55rem;
+  }
+
+  .auth-page .form-group {
+    gap: 0.2rem;
+  }
+
+  .auth-page .form-group label {
+    font-size: 0.74rem;
+  }
+
+  .auth-page .form-group input {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    border-radius: 0.7rem;
+  }
+
+  .auth-page .password-input-wrapper input {
+    padding-right: 2.6rem;
+  }
+
+  .auth-page .auth-back-link {
+    padding: 0.28rem 0.62rem;
+    font-size: 0.75rem;
+  }
+
+  .auth-page .checkbox-label,
+  .auth-page .forgot-link,
+  .auth-page .auth-switch {
+    font-size: 0.78rem;
+  }
+
+  .auth-page .btn-submit {
+    padding: 0.65rem 1rem;
+    font-size: 0.86rem;
+  }
+
+  /* The demo explanation is nice-to-have; dropping it keeps the page scroll-free */
+  .auth-page .demo-notice {
+    display: none;
   }
 }

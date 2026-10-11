@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff, KeyRound, UserPlus } from 'lucide-react';
 import './Auth.css';
@@ -7,50 +7,79 @@ type SignUpErrors = {
   name?: string;
   email?: string;
   password?: string;
+  confirmPassword?: string;
+};
+
+type SignUpForm = {
+  name: string;
+  email: string;
+  company: string;
+  password: string;
+  confirmPassword: string;
+};
+
+const EMPTY_FORM: SignUpForm = {
+  name: '',
+  email: '',
+  company: '',
+  password: '',
+  confirmPassword: '',
+};
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/**
+ * Single source of truth for validation: run on submit, and (once the form has
+ * been submitted) on every keystroke, so a field can only clear its own error
+ * by actually being fixed.
+ */
+const validate = (form: SignUpForm): SignUpErrors => {
+  const next: SignUpErrors = {};
+
+  if (!form.name.trim()) next.name = 'Your name is required';
+
+  if (!form.email.trim()) next.email = 'Email is required';
+  else if (!EMAIL_PATTERN.test(form.email.trim())) next.email = 'Enter a valid email address';
+
+  if (!form.password) next.password = 'Password is required';
+  else if (form.password.length < 8) next.password = 'Use at least 8 characters';
+
+  if (!form.confirmPassword) next.confirmPassword = 'Confirm your password';
+  else if (form.confirmPassword !== form.password) next.confirmPassword = 'Passwords do not match';
+
+  return next;
 };
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    password: '',
-  });
-  const [errors, setErrors] = useState<SignUpErrors>({});
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState<SignUpForm>(EMPTY_FORM);
+
+  const errors = useMemo<SignUpErrors>(
+    () => (submitted ? validate(formData) : {}),
+    [submitted, formData]
+  );
+
+  const passwordsMatch =
+    formData.password.length > 0 &&
+    formData.password === formData.confirmPassword &&
+    !errors.confirmPassword;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitted(true);
 
-    const newErrors: SignUpErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Your name is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Use at least 8 characters';
-    }
-
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(validate(formData)).length === 0) {
       // Demo workspace - go straight to the dashboard
       navigate('/dashboard');
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-    if (errors[e.target.name as keyof SignUpErrors]) {
-      setErrors({
-        ...errors,
-        [e.target.name]: undefined,
-      });
-    }
+    const { name, value } = e.target;
+    setFormData((current) => ({ ...current, [name]: value }));
   };
 
   return (
@@ -79,7 +108,7 @@ const SignUp: React.FC = () => {
               </ul>
             </div>
 
-            <p className="auth-brand-footer">Join 500+ companies onboarding with Onboad</p>
+            <p className="auth-brand-footer">Join 200+ companies onboarding with Onboad</p>
           </div>
         </aside>
 
@@ -92,9 +121,6 @@ const SignUp: React.FC = () => {
             </Link>
 
             <div className="auth-form-header">
-              <div className="auth-icon-wrapper">
-                <UserPlus size={24} />
-              </div>
               <h1>Create your workspace</h1>
               <p>Start onboarding your next hire in under ten minutes</p>
             </div>
@@ -150,18 +176,50 @@ const SignUp: React.FC = () => {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="At least 8 characters"
+                    autoComplete="new-password"
                     className={errors.password ? 'error' : ''}
+                    aria-invalid={Boolean(errors.password)}
                   />
                   <button
                     type="button"
                     className="password-toggle"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => setShowPassword((visible) => !visible)}
                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 </div>
                 {errors.password && <span className="error-message">{errors.password}</span>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm password</label>
+                <div className="password-input-wrapper">
+                  <input
+                    id="confirmPassword"
+                    type={showConfirm ? 'text' : 'password'}
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="Re-enter your password"
+                    autoComplete="new-password"
+                    className={errors.confirmPassword ? 'error' : ''}
+                    aria-invalid={Boolean(errors.confirmPassword)}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowConfirm((visible) => !visible)}
+                    aria-label={showConfirm ? 'Hide password' : 'Show password'}
+                  >
+                    {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+                {errors.confirmPassword ? (
+                  <span className="error-message">{errors.confirmPassword}</span>
+                ) : (
+                  passwordsMatch && <span className="match-message">Passwords match</span>
+                )}
               </div>
 
               <div className="form-footer">
@@ -176,13 +234,9 @@ const SignUp: React.FC = () => {
                 <UserPlus size={18} />
               </button>
 
-              <div className="auth-divider">
-                <span>Already have an account?</span>
-              </div>
-
-              <Link to="/signin" className="btn-secondary-link">
-                Sign in instead
-              </Link>
+              <p className="auth-switch">
+                Already have an account? <Link to="/signin">Sign in instead</Link>
+              </p>
             </form>
 
             <div className="demo-notice">
