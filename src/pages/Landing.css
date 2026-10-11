@@ -836,12 +836,12 @@
   gap: 1.5rem;
   padding: 1.2rem;
   border-radius: 28px;
-  /* No fill at all: the frosted blur and an ink hairline are the whole panel,
-     so nothing stacks up into a white box. */
+  /* No fill and no enclosing border: the frosted blur and the drop shadow are
+     the whole panel, so nothing draws a box around the mock. */
   background: transparent;
+  border: none;
   backdrop-filter: blur(26px) saturate(180%);
   -webkit-backdrop-filter: blur(26px) saturate(180%);
-  border: 1px solid rgba(10, 10, 11, 0.09);
   box-shadow: 0 30px 80px rgba(10, 10, 11, 0.1);
 }
 
@@ -855,9 +855,9 @@
   border-radius: 20px;
   overflow: hidden;
   background: transparent;
+  border: none;
   backdrop-filter: blur(18px) saturate(170%);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
-  border: 1px solid rgba(10, 10, 11, 0.08);
 }
 
 /* app sidebar */
@@ -1257,13 +1257,9 @@
   border-color: rgba(10, 10, 11, 0.22);
 }
 
-/* Selection is carried by an ink edge and the stronger hairline, so the open
-   use case needs no fill at all. */
-.landing-page .case-item.is-active {
-  background: transparent;
-  border-color: rgba(10, 10, 11, 0.26);
-  box-shadow: inset 4px 0 0 0 var(--ink), 0 10px 26px rgba(10, 10, 11, 0.08);
-}
+/* The open use case is styled exactly like the closed ones — same fill, same
+   hairline, no ink bar or shadow. Which one is open is carried by the
+   description paragraph it expands to show, not by its background or border. */
 
 .landing-page .case-head {
   display: flex;
