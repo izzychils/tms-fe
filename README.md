@@ -1,4 +1,4 @@
-# Onboard Flow - Employee Onboarding Portal
+# Onboad - Employee Onboarding Portal
 
 A comprehensive employee onboarding management system with **stunning glassmorphism design**, built with React, TypeScript, and Framer Motion.
 
