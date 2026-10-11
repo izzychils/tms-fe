@@ -132,7 +132,7 @@ const BOARD_COLUMNS = [
 ];
 
 const STATS = [
-  { value: '1+', label: 'Employees onboarded' },
+  { value: '1k+', label: 'Employees onboarded' },
   { value: '95%', label: 'Average task completion' },
   { value: '60%', label: 'Less admin time per hire' },
   { value: '200+', label: 'Companies run on Onboad' },
