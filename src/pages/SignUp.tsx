@@ -183,7 +183,7 @@ const SignUp: React.FC = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="At least 8 characters"
+                      placeholder="8+ characters"
                       autoComplete="new-password"
                       className={errors.password ? 'error' : ''}
                       aria-invalid={Boolean(errors.password)}
