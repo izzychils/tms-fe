@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Mail, Phone, MapPin, MessageSquare, CreditCard, Shield, FileText, Globe } from 'lucide-react';
+import { ArrowLeft, Phone, MapPin, MessageSquare, Shield, Globe } from 'lucide-react';
+// import { Mail, CreditCard, FileText } from 'lucide-react';
 import './StaticPage.css';
 
 const Contact: React.FC = () => {
@@ -14,29 +15,30 @@ const Contact: React.FC = () => {
       icon: MessageSquare,
       title: 'General support',
       items: [
-        { label: 'Email', value: 'support@onboad.ng', href: 'mailto:support@onboad.ng' },
+        { label: 'Email', value: 'support@onboad.com', href: 'mailto:support@onboad.com' },
         { label: 'Phone/WhatsApp', value: '+234 800 000 0000', href: 'tel:+2348000000000' },
       ],
     },
+    /*
     {
       icon: Mail,
       title: 'Sales and demos',
       items: [
-        { label: 'Email', value: 'sales@onboad.ng', href: 'mailto:sales@onboad.ng' },
+        { label: 'Email', value: 'sales@onboad.com', href: 'mailto:sales@onboad.com' },
       ],
     },
     {
       icon: CreditCard,
       title: 'Billing',
       items: [
-        { label: 'Email', value: 'billing@onboad.ng', href: 'mailto:billing@onboad.ng' },
+        { label: 'Email', value: 'billing@onboad.com', href: 'mailto:billing@onboad.com' },
       ],
     },
     {
       icon: Shield,
       title: 'Privacy and data requests',
       items: [
-        { label: 'Email', value: 'privacy@onboad.ng', href: 'mailto:privacy@onboad.ng' },
+        { label: 'Email', value: 'privacy@onboad.com', href: 'mailto:privacy@onboad.com' },
         { label: 'Subject', value: 'Please use "Data Request" as the subject' },
       ],
     },
@@ -44,9 +46,10 @@ const Contact: React.FC = () => {
       icon: FileText,
       title: 'Legal notices',
       items: [
-        { label: 'Email', value: 'legal@onboad.ng', href: 'mailto:legal@onboad.ng' },
+        { label: 'Email', value: 'legal@onboad.com', href: 'mailto:legal@onboad.com' },
       ],
     },
+    */
   ];
 
   return (
@@ -133,8 +136,8 @@ const Contact: React.FC = () => {
             <div>
               <h3>Website</h3>
               <p>
-                <a className="info-link" href="https://onboad.ng">
-                  https://onboad.ng
+                <a className="info-link" href="https://onboad.com">
+                  https://onboad.com
                 </a>
               </p>
             </div>
