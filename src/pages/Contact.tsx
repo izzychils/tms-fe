@@ -116,7 +116,6 @@ const Contact: React.FC = () => {
             <MapPin size={24} />
             <div>
               <h3>Company</h3>
-              <p><strong>MecurixTech</strong></p>
               <p>Rivers State, Nigeria</p>
               <p>Registered address: Rivers State, Nigeria</p>
             </div>
