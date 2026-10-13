@@ -294,6 +294,8 @@ interface FooterLink {
 }
 
 const FOOTER_COLUMNS: Array<{ title: string; links: FooterLink[] }> = [
+  // Product column hidden for now - uncomment to restore it in the footer
+  /*
   {
     title: 'Product',
     links: [
@@ -305,6 +307,7 @@ const FOOTER_COLUMNS: Array<{ title: string; links: FooterLink[] }> = [
       { label: 'Pricing', href: '#features' },
     ],
   },
+  */
   {
     title: 'Company',
     links: [
