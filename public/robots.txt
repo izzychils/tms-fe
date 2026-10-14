@@ -1,3 +1,29 @@
-# robots.txt - onboad.com
+# robots.txt - www.onboad.com
+#
+# Crawl rules for search engines. Allow/Disallow control crawling, not
+# indexing: a Disallow only stops a URL being fetched, and pages that must
+# never appear in results also need a noindex tag.
+
 User-agent: *
+
+# ------------------------------------------------- public pages to index
 Allow: /
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /terms-and-conditions
+
+# --------------------------------------------------- signed-in workspace
+# Task lists, reports and account data are per-user and behind the sign-in.
+Disallow: /dashboard
+Disallow: /tasks
+Disallow: /resources
+Disallow: /profile
+Disallow: /team
+Disallow: /reports
+Disallow: /signin
+Disallow: /signup
+
+# ---------------------------------------------------------------- sitemap
+Sitemap: https://www.onboad.com/sitemap.xml
